@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DetectFace.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cvextern.dll" />
+    <Content Include="haarcascade_eye.xml" />
+    <Content Include="haarcascade_frontalface_default.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

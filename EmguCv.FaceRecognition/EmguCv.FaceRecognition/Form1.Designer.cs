@@ -37,7 +37,7 @@
             // 
             this.picCamera.Location = new System.Drawing.Point(12, 41);
             this.picCamera.Name = "picCamera";
-            this.picCamera.Size = new System.Drawing.Size(553, 413);
+            this.picCamera.Size = new System.Drawing.Size(996, 694);
             this.picCamera.TabIndex = 0;
             this.picCamera.TabStop = false;
             // 
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 466);
+            this.ClientSize = new System.Drawing.Size(1020, 747);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.picCamera);
             this.Name = "Form1";
