@@ -29,12 +29,13 @@ namespace EmguCv.FaceRecognition
         private CascadeClassifier haar = new CascadeClassifier("haarcascade_frontalface_default.xml");
 
         Image<Bgr, Byte> myImageFrame;
-
+        
         private void ProcessFrame(object sender, EventArgs arg)
         {
             myImageFrame = capture.QueryFrame().ToImage<Bgr, Byte>();  //line 1
             myMatImage = myImageFrame.Mat;
-            picCamera.Image = myImageFrame.Bitmap;       //line 2
+            picCamera.Image = myImageFrame.Bitmap; //line 2
+            
             FaceRecog();
         }
 
@@ -47,31 +48,31 @@ namespace EmguCv.FaceRecognition
         
         private void FaceRecog()
         {
-            //bool tryUseCuda = false;
-            //long detectionTime;
-            //List<Rectangle> faces = new List<Rectangle>();
-            //List<Rectangle> eyes = new List<Rectangle>();
-            //DetectFace.Detect(myMatImage, "haarcascade_frontalface_default.xml", "haarcascade_eye.xml",faces,eyes,tryUseCuda, out detectionTime);
-            //foreach (Rectangle face in faces)
-            //    CvInvoke.Rectangle(myMatImage, face, new Bgr(Color.Red).MCvScalar, 2);
-            //foreach (Rectangle eye in eyes)
-            //    CvInvoke.Rectangle(myMatImage, eye, new Bgr(Color.Blue).MCvScalar, 2);
+            bool tryUseCuda = false;
+            long detectionTime;
+            List<Rectangle> faces = new List<Rectangle>();
+            List<Rectangle> eyes = new List<Rectangle>();
+            DetectFace.Detect(myMatImage, "haarcascade_frontalface_default.xml", faces, tryUseCuda, out detectionTime);
+            foreach (Rectangle face in faces)
+                CvInvoke.Rectangle(myMatImage, face, new Bgr(Color.Red).MCvScalar, 2);
+            foreach (Rectangle eye in eyes)
+                CvInvoke.Rectangle(myMatImage, eye, new Bgr(Color.Blue).MCvScalar, 2);
 
 
-            using (var imageFrame = myImageFrame)
-            {
-                if (imageFrame != null)
-                {
-                    var grayframe = imageFrame.Convert<Gray, byte>();
-                    var faces = haar.DetectMultiScale(grayframe, 1.1, 10, Size.Empty); //the actual face detection happens here
-                    foreach (var face in faces)
-                    {
-                        imageFrame.Draw(face, new Bgr(Color.BurlyWood), 3); //the detected face(s) is highlighted here using a box that is drawn around it/them
+            //using (var imageFrame = myImageFrame)
+            //{
+            //    if (imageFrame != null)
+            //    {
+            //        var grayframe = imageFrame.Convert<Gray, byte>();
+            //        var faces = haar.DetectMultiScale(grayframe, 1.1, 10, Size.Empty); //the actual face detection happens here
+            //        foreach (var face in faces)
+            //        {
+            //            imageFrame.Draw(face, new Bgr(Color.BurlyWood), 3); //the detected face(s) is highlighted here using a box that is drawn around it/them
 
-                    }
-                }
-                picCamera.Image = imageFrame.Bitmap;
-            }
+            //        }
+            //    }
+            //    picCamera.Image = imageFrame.Bitmap;
+            //}
 
 
         }
